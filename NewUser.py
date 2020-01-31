@@ -21,10 +21,10 @@ cap.set(3,640)
 cap.set(4,480)
 face_detector = cv2.CascadeClassifier('haarcascade/haarcascade_frontalface_default.xml')
 
-
+#비어있는 번호 찾기
 for i in range(1,10):
 	n = str(i)
-	if os.path.exists("./dataset/User."+n+".30.jpg") == True:
+	if os.path.exists("./UserData/User."+n+".30.jpg") == True:
 		i+=1
 	else:
 		face_id = i
@@ -40,6 +40,8 @@ ref.update({
 print(" [INFO] Initializing fzce capture. Look the camera and wait ..")
 
 count = 0
+
+#카메라에 나온 사람의 얼굴을 찾아서 프레임 씌우기 
 while True:
 	ret, img = cap.read()
 	img = cv2.flip(img, -1)
@@ -51,7 +53,7 @@ while True:
 		roi_gray = gray[y:y+h, x:x+w]
 		roi_color = img[y:y+h, x:x+w]
 
-		cv2.imwrite("dataset/User." + str(face_id) + '.' +str(count) + ".jpg", gray[y:y+h,x:x+w])
+		cv2.imwrite("UserData/User." + str(face_id) + '.' +str(count) + ".jpg", gray[y:y+h,x:x+w])
 		cv2.imshow('image',img)
 
 	k = cv2.waitKey(100) & 0xff
@@ -66,12 +68,12 @@ cap.release()
 cv2.destroyAllWindows()
 
 
-#path for face image database
-path = 'dataset'
+#얼굴이미지가 저장될 경로 지정하기
+path = 'UserData'
 recognizer = cv2.face.LBPHFaceRecognizer_create()
 detector = cv2.CascadeClassifier("haarcascade/haarcascade_frontalface_default.xml")
 
-#function to get the image and label data
+#이미지에 대한 정보, 얼굴 훈련시키기
 def getImagesAndLabels(path):
         imagePaths = [os.path.join(path,f) for f in os.listdir(path)]
         faceSamples=[]
@@ -101,9 +103,10 @@ config ={
         "storageBucket":"facelock-39a53.appspot.com"
 }
 
+#Firebase에 사용자 번호 저장하기 & Firebase Storage에 얼굴 하나 뽑아서 
 ID = str(face_id)
 firebase = pyrebase.initialize_app(config)
-uploadfile = "dataset/User."+ID+".15.jpg"
+uploadfile = "UserData/User."+ID+".15.jpg"
 s = os.path.splitext(uploadfile)[1]
 filename = ID+".jpg"
 
