@@ -13,7 +13,6 @@ gpio.setup(echo, gpio.IN)
 gpio.setwarnings(False)
 count = 0
 cnt=0
-#start = 0
 while True:
 	while True:
 		gpio.output(trig,False)
@@ -28,6 +27,7 @@ while True:
 		distance = (end - start) * 17000
 		distance = round(distance,2)
 		print 'Dist =', distance
+		#50cm 이내에 있으면 앞에 사람이 있다고 판단한다.
 		if distance < 50:
 			count += 1
 			if count% 20 == 0:
@@ -43,4 +43,3 @@ while True:
 			count = 0
 			pass
 
-#gpio.cleanup()
