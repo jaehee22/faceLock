@@ -12,7 +12,7 @@ if (not len(firebase_admin._apps)):
 
 for i in range(1,10):
         n = str(i)
-        if os.path.exists("./Guestdata/Guest."+n+".jpg") == True:
+        if os.path.exists("./GuestData/Guest."+n+".jpg") == True:
                 i+=1
         else:
 		k = str(i)
