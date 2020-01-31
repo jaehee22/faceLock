@@ -57,19 +57,20 @@ while True:
 	for(x,y,w,h) in faces:
 		cv2.rectangle(img, (x,y), (x+w,y+h), (0,255,0), 2)
 		id, confidence = recognizer.predict(gray[y:y+h,x:x+w])
+		#인식된 얼굴이 사용자 일때 (인식률 43%이상이면 사용자)
 		if (confidence < 57):
 			id = names[id]
 			confidence = " {0}%".format(round(100 - confidence))
 			cv2.putText(img, str(confidence), (x+5,y+h-5), font, 1, (255,255,0), 1)
 			print 'Hi User!'
 			Hi = "Hi"
-			#doorLock open code
+			#도어락 제어
 			GPIO.output(door,GPIO.HIGH)
                 	time.sleep(0.5)
                 	GPIO.output(door,GPIO.LOW)
 
 			break
-
+		#인식된 얼굴이 사용자가 아닐 때
 		elif(confidence < 100 and confidence > 57):
 			id = "unknown"
 			count += 1
@@ -78,15 +79,16 @@ while True:
 			if (count%33 == 0):
 				print 'Who are you?'
 				Hi = "Hi"
+				#방문자목록에 얼굴 등록하기
 				for i in range(1,50):
 					g = str(i)
-					if  os.path.exists("./Guestdata/Guest."+g+".jpg") == True:
+					if  os.path.exists("./GuestData/Guest."+g+".jpg") == True:
 						i+=1
 					else:
 						import dbGuest
-						cv2.imwrite("./Guestdata/Guest."+g+".jpg", img)
+						cv2.imwrite("./GuestData/Guest."+g+".jpg", img)
 						firebase = pyrebase.initialize_app(config)
-                               			uploadfile = "Guestdata/Guest."+g+".jpg"
+                               			uploadfile = "GuestData/Guest."+g+".jpg"
                                 		s = os.path.splitext(uploadfile)[1]
                               			filename = g+".jpg"
                                			storage = firebase.storage()
@@ -95,9 +97,7 @@ while True:
         	                		fileUrl = storage.child("GuestList/"+filename).get_url(1)
 						print (fileUrl)
 						break
-#	if Hi == 'Hi':
-#		break
-	#cv2.putText(img, str(id), (x+5, y-5), font, 1, (255,255,255), 2)
+						
 	cv2.imshow('camera', img)
 
 	if Hi == 'Hi':
