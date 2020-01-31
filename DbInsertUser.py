@@ -10,7 +10,7 @@ face_id = 0
 
 for i in range(1,10):
 	n = str(i)
-        if os.path.exists("./dataset/User."+n+".30.jpg") == True:
+        if os.path.exists("./UserData/User."+n+".30.jpg") == True:
                 i+=1
         else:
                 face_id = i
