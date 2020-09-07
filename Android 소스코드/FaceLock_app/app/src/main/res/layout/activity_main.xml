@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="139dp"
+        android:layout_height="57dp"
+        android:text="FaceLock"
+        android:textSize="30sp"
+        android:textColor="0."
+        android:typeface="serif"
+        tools:layout_editor_absoluteX="123dp"
+        tools:layout_editor_absoluteY="29dp" />
+
+    <Button
+        android:id="@+id/button"
+        android:layout_width="244dp"
+        android:layout_height="61dp"
+        android:background="@android:color/white"
+        android:text="도어락 제어"
+        android:textSize="20sp"
+        tools:layout_editor_absoluteX="70dp"
+        tools:layout_editor_absoluteY="135dp" />
+
+    <Button
+        android:id="@+id/button2"
+        android:layout_width="244dp"
+        android:layout_height="61dp"
+        android:background="@android:color/white"
+        android:text="방문자 목록"
+        android:textSize="20sp"
+        tools:layout_editor_absoluteX="70dp"
+        tools:layout_editor_absoluteY="234dp" />
+
+    <Button
+        android:id="@+id/button3"
+        android:layout_width="244dp"
+        android:layout_height="61dp"
+        android:background="@android:color/white"
+        android:text="사용자 등록"
+        android:textSize="20sp"
+        tools:layout_editor_absoluteX="70dp"
+        tools:layout_editor_absoluteY="334dp" />
+
+    <Button
+        android:id="@+id/button4"
+        android:layout_width="244dp"
+        android:layout_height="61dp"
+        android:background="@android:color/white"
+        android:text="사용자 목록"
+        android:textSize="20sp"
+        tools:layout_editor_absoluteX="70dp"
+        tools:layout_editor_absoluteY="433dp" />
+</android.support.constraint.ConstraintLayout>
