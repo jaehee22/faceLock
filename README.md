@@ -61,8 +61,6 @@
 
 
 ### 📱 Application 메인화면
-![image](https://user-images.githubusercontent.com/58822916/73519971-d24e4b00-4445-11ea-8f81-9fc095be48c8.png)
-
 <img width="200" src="https://user-images.githubusercontent.com/55887059/92363111-f8e70980-f12b-11ea-9809-049b20f0bf76.gif">
 
 1. 사용자 등록 버튼을 누르고 도어락 앞에 있는 카메라에 가서 사진을 찍으면 사용자를 등록할 수 있다.
